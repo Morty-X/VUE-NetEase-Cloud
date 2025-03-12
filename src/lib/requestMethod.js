@@ -22,7 +22,7 @@ export function getUnikey() {
   onMounted(() => {
     const queryUnikey = useSendRequest({
       method: 'post',
-      url: `/login/qr/key/veet&timestamp=${Date.now()}`,
+      url: `/login/qr/key/&timestamp=${Date.now()}`,
     });
     queryUnikey
       .then((res) => {
@@ -38,11 +38,11 @@ export function getUnikey() {
   return unikey;
 }
 
-
 export async function getImgBase64(unikey) {
   const URLRes = await useSendRequest({
     method: 'post',
-    url: `/login/qr/create/veet?key=${unikey}&qrimg=${Date.now()}&timestamp=${Date.now()}`,
+    url: `/login/qr/create/?key=${unikey}&qrimg=${Date.now()}&timestamp=${Date.now()}`,
+    // veet?
   });
   console.log('🚀 ~ requestMethod.js:44 ~ getImgBase64 ~ URLRes:', URLRes);
   const QRImg = URLRes.data.data.qrimg;

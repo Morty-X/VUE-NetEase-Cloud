@@ -7,14 +7,14 @@ export default defineConfig({
   server: {
     port: 5763,
     open: './index.html',
-    proxy: {
-      // 当检测到我的路径是以 veet 开头，这个路径就会别代理
-      '/veet': {
-        target: 'https://neteasecloudmusicapi.vercel.app',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/veet/, ''),
-      },
-    },
+    // proxy: {
+    //   // 当检测到我的路径是以 veet 开头，这个路径就会别代理
+    //   '/veet': {
+    //     target: 'https://neteasecloudmusicapi.vercel.app',
+    //     changeOrigin: true,
+    //     rewrite: (path) => path.replace(/^\/veet/, ''),
+    //   },
+    // },
   },
   resolve: {
     alias: {
