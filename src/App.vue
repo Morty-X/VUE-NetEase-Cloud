@@ -30,7 +30,7 @@
             class="absolute bg-[#DDDDDD] w-[40vw] h-[40vw] opacity-60 z-[2]"
           ></div>
           <div
-            @click="refreshQRcode"
+            @click="unikey = getUnikey()"
             class="shadow-lg absolute z-[3] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#FF5A35] to-[#F81227] text-[#fff] rounded-[200px] text-center leading-[7.6vw] h-[7.6vw] w-[20vw] text-[3vw]"
           >
             点击刷新
@@ -70,7 +70,7 @@ import {
 /* -------------------------------------------------------------------------- */
 // 第一个参数必须与模板中的 ref 值匹配
 const logoImg = shallowRef(null);
-const maskIsHidden = ref(false);
+const maskIsHidden = ref(true);
 let unikey = getUnikey();
 
 console.log('🚀 ~ App.vue:75 ~ unikey:', unikey);
@@ -101,53 +101,6 @@ watch(unikey, () => {
     });
   }, 1000);
 });
-
-function refreshQRcode() {
-  unikey = getUnikey();
-  console.log('点击刷新要修改 unikey的值');
-}
-
-// onMounted(() => {
-//   const queryUnikey = useSendRequest({
-//     method: 'post',
-//     url: `/login/qr/key/veet&timestamp=${Date.now()}`,
-//   });
-
-//   queryUnikey.then((res) => {
-//     // key
-//     const unikey = res.data.data.unikey;
-//     console.log('🚀 ~ App.vue:65 ~ queryUnikey.then ~ unikey:', unikey);
-
-//     const URLRes = useSendRequest({
-//       method: 'post',
-//       url: `/login/qr/create/veet?key=${unikey}&qrimg=11&qrimg=${Date.now()}&timestamp=${Date.now()}`,
-//     });
-
-//     // &qrimg=${Date.now()}
-//     URLRes.then((res) => {
-//       const QRImg = res.data.data.qrimg;
-//       // 修改 二维码图片的 src 属性
-//       logoImg.value.src = QRImg;
-//       console.log('🚀 ~ App.vue:75 ~ URLRes.then ~ QRImg:', QRImg);
-//     });
-
-//     /* -------------------轮训获取 状态码------------------------------------------------------- */
-//     setInterval(() => {
-//       const result = useSendRequest({
-//         method: 'post',
-//         url: `/login/qr/check/veet?key=${unikey}&noCookie=true&timestamp=${Date.now()}`,
-//       });
-
-//       result.then((res) => {
-//         const { code, message } = res.data;
-//         console.log(code, message);
-//         if (code === 800) {
-//           maskIsHidden.value = true;
-//         }
-//       });
-//     }, 1000);
-//   });
-// });
 
 // 发起一个post请求
 // axios({
