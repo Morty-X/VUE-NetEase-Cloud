@@ -18,7 +18,7 @@ export default defineConfig({
   ],
   server: {
     port: 5763,
-    open: './index.html',
+    open: true,
     // proxy: {
     //   '/api': {
     //     target: 'https://netease-cloud-music-api-five-roan-88.vercel.app',
