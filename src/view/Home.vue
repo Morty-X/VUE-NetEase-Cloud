@@ -1,5 +1,17 @@
 <template>
-  <div class=" ">
+  <div>
+    <!-- 左侧的抽屉 -->
+    <!-- <div
+      class="w-[80vw] h-screen fixed top-0 left-0 bottom-0 px-[2vh] bg-red-200 z-[99]"
+    ></div> -->
+
+    <!-- 左侧弹出 -->
+    <van-popup
+      v-model:show="showLeft"
+      position="left"
+      :style="{ width: '80%', height: '100%' }"
+    />
+
     <!-- 搜索栏 -->
     <searchBar class="px-[2vh]">
       {{ defaultSearchRes }}
@@ -65,23 +77,6 @@
                 :key="res.resourceId"
               />
             </div>
-
-            <!-- <div class="mr-[8vh]">
-              <posterHorizonCard></posterHorizonCard>
-              <posterHorizonCard></posterHorizonCard>
-              <posterHorizonCard></posterHorizonCard>
-            </div>
-
-            <div class="mr-[8vh]">
-              <posterHorizonCard></posterHorizonCard>
-              <posterHorizonCard></posterHorizonCard>
-              <posterHorizonCard></posterHorizonCard>
-            </div>
-            <div class="mr-[8vh]">
-              <posterHorizonCard></posterHorizonCard>
-              <posterHorizonCard></posterHorizonCard>
-              <posterHorizonCard></posterHorizonCard>
-            </div> -->
           </HScrollbar>
         </Block>
       </div>
@@ -90,16 +85,25 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed, onUpdated, shallowRef } from 'vue';
+import {
+  ref,
+  onMounted,
+  watch,
+  computed,
+  onUpdated,
+  shallowRef,
+  onBeforeUnmount,
+} from 'vue';
 import { useRequest } from 'vue-request';
 import BScroll from '@better-scroll/core';
-
+import { Icon } from '@iconify/vue';
 import searchBar from './HomeComponent/searchBar.vue';
 import { getSearchDefault, getHomeData } from '../api/home';
 import Block from './HomeComponent/Block.vue';
 import HScrollbar from './HomeComponent/HScrollbar.vue';
 import Poster from './HomeComponent/Poster.vue';
 import posterHorizonCard from './HomeComponent/posterHorizonCard.vue';
+import HeadInfo from './HomeComponent/HeadInfo.vue';
 /* -------------------------------- 搜索栏组件 -------------------------------- */
 const { data: defaultSearch } = useRequest(getSearchDefault);
 const defaultSearchRes = ref(null);
@@ -109,9 +113,6 @@ watch(defaultSearch, () => {
 
 /* -------------------------------------------------------------------------- */
 const { data: homePageData } = useRequest(getHomeData);
-// watch(homePageData, () => {
-//   console.log('🚀 ~ Home.vue:31 ~ watch ~ homePageData:', homePageData.value);
-// });
 // Vue 的计算属性会自动追踪响应式依赖
 const blocks = computed(() => {
   return homePageData?.value?.data?.data?.blocks.reduce((prev, current) => {
@@ -119,6 +120,16 @@ const blocks = computed(() => {
     return prev;
   }, {});
 });
+
+
+
+
+
+
+
+
+
+
 watch(blocks, () => {
   console.log('🚀 ~ Home.vue:52 ~ watch ~ blocks:', blocks.value);
   console.log(blocks.value?.HOMEPAGE_VOICELIST_RCMD?.creatives);
@@ -130,11 +141,18 @@ const verBscroll = shallowRef(null);
 
 onMounted(() => {
   bsVer = new BScroll(verBscroll.value, { scrollY: true });
+  bsVer?.refresh();
 });
 
 onUpdated(() => {
   bsVer?.refresh();
 });
+
+onBeforeUnmount(() => {
+  bsVer?.destroy();
+});
+
+const showLeft = ref(true);
 </script>
 
 <style lang="scss" scoped>

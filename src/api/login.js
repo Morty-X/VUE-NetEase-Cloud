@@ -5,7 +5,12 @@ import { request } from '../utils/index.js';
  * @param {*}
  * @return {*}
  */
-export const apiGetKey = () => request.get('/login/qr/key');
+export const apiGetKey = () =>
+  request.get('/login/qr/key', {
+    params: {
+      noCookie: true,
+    },
+  });
 /* -------------------------------------------------------------------------- */
 /**
  * @description: 获取二维码图片的base64地址
@@ -17,6 +22,7 @@ export const apiGetQR = (key) =>
     params: {
       key,
       qrimg: Date.now(),
+      noCookie: true,
     },
   });
 /* -------------------------------------------------------------------------- */
@@ -29,5 +35,6 @@ export const apiCheckLoginState = (key) =>
   request.get('/login/qr/check', {
     params: {
       key,
+      noCookie: true,
     },
   });

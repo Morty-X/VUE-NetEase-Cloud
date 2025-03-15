@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { VantResolver } from '@vant/auto-import-resolver';
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import path from 'path';
 /* -------------------------------------------------------------------------- */
 // https://vite.dev/config/
@@ -13,7 +14,12 @@ export default defineConfig({
       resolvers: [VantResolver()],
     }),
     Components({
-      resolvers: [VantResolver()],
+      resolvers: [
+        VantResolver(),
+        AntDesignVueResolver({
+          importStyle: false, // css in js
+        }),
+      ],
     }),
   ],
   server: {

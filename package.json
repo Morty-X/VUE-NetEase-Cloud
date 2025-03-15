@@ -11,9 +11,11 @@
   "dependencies": {
     "@better-scroll/core": "^2.5.1",
     "@vueuse/core": "^13.0.0",
+    "ant-design-vue": "4.x",
     "autoprefixer": "^10.4.21",
     "axios": "^1.8.2",
     "postcss": "^8.5.3",
+    "storejs": "^2.1.0",
     "tailwindcss": "3",
     "vant": "^4.9.17",
     "vue": "^3.5.13",
@@ -29,5 +31,10 @@
     "unplugin-vue-components": "^28.4.1",
     "vite": "^6.2.0"
   },
-  "packageManager": "pnpm@10.5.2+sha512.da9dc28cd3ff40d0592188235ab25d3202add8a207afbedc682220e4a0029ffbff4562102b9e6e46b4e3f9e8bd53e6d05de48544b0c57d4b0179e22c76d1199b"
+  "packageManager": "pnpm@10.5.2+sha512.da9dc28cd3ff40d0592188235ab25d3202add8a207afbedc682220e4a0029ffbff4562102b9e6e46b4e3f9e8bd53e6d05de48544b0c57d4b0179e22c76d1199b",
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "core-js"
+    ]
+  }
 }
