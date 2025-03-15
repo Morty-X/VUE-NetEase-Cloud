@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@better-scroll/core": "^2.5.1",
     "@vueuse/core": "^13.0.0",
     "autoprefixer": "^10.4.21",
     "axios": "^1.8.2",
