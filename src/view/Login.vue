@@ -12,6 +12,7 @@
       <img src="../assets/vue.svg" class="w-[38vw] mx-auto mt-[7vw] mb-[9vw]" />
       <div class="relative">
         <!--  :src="qrlImg" -->
+          
         <img
           alt=""
           :src="qrimg"
