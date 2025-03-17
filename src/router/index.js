@@ -5,6 +5,7 @@ import {
 } from 'vue-router';
 import store from 'storejs';
 
+
 import { STATIC_ROUTER } from './router.js';
 // 创建路由实例
 export const router = createRouter({
