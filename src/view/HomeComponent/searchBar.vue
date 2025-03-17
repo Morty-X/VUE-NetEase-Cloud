@@ -1,6 +1,9 @@
 <template>
-  <div class="w-full fixed top-0 left-0 bottom-0 right-0 z-50 flex justify-between items-center h-[8vh] bg-[#0d0d12]">
+  <div
+    class="w-full fixed top-0 left-0 bottom-0 right-0 z-50 flex justify-between items-center h-[8vh] bg-[#0d0d12]"
+  >
     <Icon
+      @click="model = true"
       icon="quill:hamburger"
       width="24"
       height="24"
@@ -35,4 +38,7 @@
 
 <script setup>
 import { Icon } from '@iconify/vue';
+import { defineProps, ref, defineModel } from 'vue';
+const model = defineModel();
+console.log(model.value);
 </script>

@@ -1,1 +1,2 @@
-export * from './request.js';
+export * from './request';
+export * from './polling';

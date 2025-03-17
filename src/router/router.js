@@ -5,7 +5,7 @@ import LoginView from '../view/Login.vue';
 
 export const STATIC_ROUTER = [
   // { path: '/', redirect: '/home' },
-  { path: '/', redirect: '/login' },
+  { path: '/', redirect: '/home' }, //路由重定向
   { path: '/home', component: HomeView },
   { path: '/about', component: AboutView },
   { path: '/login', component: LoginView },

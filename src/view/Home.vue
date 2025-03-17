@@ -1,19 +1,14 @@
 <template>
   <div>
-    <!-- 左侧的抽屉 -->
-    <!-- <div
-      class="w-[80vw] h-screen fixed top-0 left-0 bottom-0 px-[2vh] bg-red-200 z-[99]"
-    ></div> -->
-
     <!-- 左侧弹出 -->
     <van-popup
       v-model:show="showLeft"
       position="left"
       :style="{ width: '80%', height: '100%' }"
     />
-
+      
     <!-- 搜索栏 -->
-    <searchBar class="px-[2vh]">
+    <searchBar class="px-[2vh]" v-model="showLeft">
       {{ defaultSearchRes }}
     </searchBar>
 
@@ -69,7 +64,6 @@
             <div
               class="mr-[8.2vh] text-[#fff]"
               v-for="item in blocks?.HOMEPAGE_VOICELIST_RCMD?.creatives"
-              :key="item.position++"
             >
               <posterHorizonCard
                 v-for="res in item.resources"
@@ -106,12 +100,18 @@ import posterHorizonCard from './HomeComponent/posterHorizonCard.vue';
 import HeadInfo from './HomeComponent/HeadInfo.vue';
 /* -------------------------------- 搜索栏组件 -------------------------------- */
 const { data: defaultSearch } = useRequest(getSearchDefault);
+
 const defaultSearchRes = ref(null);
+
 watch(defaultSearch, () => {
   defaultSearchRes.value = defaultSearch.value?.data?.data?.realkeyword;
+  console.log(
+    '🚀 ~ Home.vue:108 ~ watch ~  defaultSearchRes.value:',
+    defaultSearchRes.value
+  );
 });
 
-/* -------------------------------------------------------------------------- */
+/* -------------------------------获取首页全部信息------------------------------------------- */
 const { data: homePageData } = useRequest(getHomeData);
 // Vue 的计算属性会自动追踪响应式依赖
 const blocks = computed(() => {
@@ -120,15 +120,6 @@ const blocks = computed(() => {
     return prev;
   }, {});
 });
-
-
-
-
-
-
-
-
-
 
 watch(blocks, () => {
   console.log('🚀 ~ Home.vue:52 ~ watch ~ blocks:', blocks.value);
@@ -152,7 +143,7 @@ onBeforeUnmount(() => {
   bsVer?.destroy();
 });
 
-const showLeft = ref(true);
+const showLeft = ref(false);
 </script>
 
 <style lang="scss" scoped>

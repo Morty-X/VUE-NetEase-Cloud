@@ -15,8 +15,8 @@ let bs = null;
 const wrapper = shallowRef(null);
 
 onMounted(() => {
-  console.log('🚀 ~ BScroll.vue:22 ~ wrapper:', wrapper.value);
   bs = new BScroll(wrapper.value, { click: true, scrollX: true });
+  bs.refresh();
 });
 
 onUpdated(() => {
