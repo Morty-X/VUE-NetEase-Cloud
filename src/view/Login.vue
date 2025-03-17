@@ -9,10 +9,7 @@
         <span class="text-[4.5vw] text-[#696969]">游客登录</span>
       </div>
       <!-- 网易云音乐logo -->
-      <img
-        src="../assets/static/logo.fill.svg"
-        class="w-[38vw] mx-auto mt-[7vw] mb-[9vw]"
-      />
+      <img src="../assets/vue.svg" class="w-[38vw] mx-auto mt-[7vw] mb-[9vw]" />
       <div class="relative">
         <!--  :src="qrlImg" -->
         <img
@@ -46,7 +43,7 @@
       </div>
 
       <div class="fixed bottom-0">
-        <img src="../assets//static/bg-login.png" alt="" class="w-[100vw]" />
+        <img src="../assets/static/bg-login.png" alt="" class="w-[100vw]" />
       </div>
     </div>
   </div>
